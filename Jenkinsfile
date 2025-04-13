@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Sangramsinh15/java-cicd-jenkins-demo.git'
+                git branch: 'main', url: 'https://github.com/Sangramsinh15/java-cicd-jenkins-demo.git'
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
 
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
+            junit '**/target/surefire-reports/*.xml' // Ensure test reports are generated in this path
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
     }
